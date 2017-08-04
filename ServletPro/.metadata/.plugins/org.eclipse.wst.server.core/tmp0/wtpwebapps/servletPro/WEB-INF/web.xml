@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  
+  <!-- 1.名和类！！！ -->
+  <servlet>
+    <servlet-name>MyServlet1</servlet-name>
+    <servlet-class>com.cjk.servlet.MyServlet1</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HelloServlet</servlet-name>
+    <!-- 全路径，包名加类名 -->
+    <servlet-class>com.cjk.servlet.HelloServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ServletConfig</servlet-name>
+    <servlet-class>com.cjk.servlet.ServletConfig</servlet-class>
+    <!-- 这里可以给servlet配置信息，这里配置的信息只能被servlet读取 -->
+    <init-param>
+    <param-name>encoding</param-name>
+    <param-value>utf-8</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>RequestTest</servlet-name>
+    <servlet-class>com.cjk.servlet.RequestTest</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Error</servlet-name>
+    <servlet-class>com.cjk.servlet.Error</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DownloadServlet</servlet-name>
+    <servlet-class>com.cjk.servlet.DownloadServlet</servlet-class>
+  </servlet>
+
+  <!-- 2.映射！！！ -->
+  <servlet-mapping>
+  <!-- servlet的注册名称，要先注册才能被访问，还可以多次被访问 -->
+    <servlet-name>MyServlet1</servlet-name>
+    <!-- servlet的访问路径 -->
+    <url-pattern>/MyServlet1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HelloServlet</servlet-name>
+    <url-pattern>/HelloServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletConfig</servlet-name>
+    <url-pattern>/ServletConfig</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RequestTest</servlet-name>
+    <url-pattern>/RequestTest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+     <servlet-name>DownloadServlet</servlet-name>
+     <url-pattern>/DownloadServlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.cjk.util&apos; to &apos;servletpro2/src&apos;&#x0D;&#x0A;- Original project: &apos;UserManager&apos;&#x0D;&#x0A;- Destination element: &apos;servletpro2/src&apos;&#x0D;&#x0A;- Original element: &apos;UserManager/src/com.cjk.util&apos;" description="Copy package" destination="=servletpro2/src" element1="/src&lt;com.cjk.util" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1501504512148" version="1.0"/>
+</session>

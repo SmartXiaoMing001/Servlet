@@ -1,0 +1,36 @@
+package com.cjk;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class RegisterCL extends HttpServlet {
+
+	/**
+	 * About browser of cache! a little important
+	 */
+	private static final long serialVersionUID = 1L;
+	int i = 0;
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		out.println("ÓÃ»§Ãû="+username+"<br/>");
+		out.println("ÃÜ    Âë="+password+"<br/>");
+		
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		this.doGet(request, response);
+	}
+}

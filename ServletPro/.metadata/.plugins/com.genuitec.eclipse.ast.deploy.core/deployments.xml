@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<deployments>
+  <deployment alt-context-root="" context-root="/requestForward" deployment-path="/Users/user/Desktop/JavaLearning/Servlet/ServletPro/.metadata/.me_tcat7/webapps/requestForward" project-name="requestForward" server-id="myeclipseTomcatServer7" state="DEPLOYED" type="WEB"/>
+  <deployment alt-context-root="" context-root="/servletpro2" deployment-path="/Users/user/Desktop/JavaLearning/Servlet/ServletPro/.metadata/.me_tcat7/webapps/servletpro2" project-name="servletpro2" server-id="myeclipseTomcatServer7" state="DEPLOYED" type="WEB"/>
+  <deployment alt-context-root="" context-root="/UserManager" deployment-path="/Users/user/Desktop/JavaLearning/Servlet/ServletPro/.metadata/.me_tcat7/webapps/UserManager" project-name="UserManager" server-id="myeclipseTomcatServer7" state="DEPLOYED" type="WEB"/>
+  <deployment alt-context-root="" context-root="/requestForward" deployment-path="/Users/user/Desktop/JavaLearning/Servlet/ServletPro/.metadata/.me_tcat/webapps/requestForward" project-name="requestForward" server-id="myeclipseTomcatServer" state="DEPLOYED" type="WEB"/>
+</deployments>

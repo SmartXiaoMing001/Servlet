@@ -1,0 +1,6 @@
+ENDORSED_DIRS="/Applications/MyEclipse for Spring 2014/MyEclipse for Spring 2014.app/Contents/Profile/plugins/com.genuitec.eclipse.easie.tomcat7.myeclipse_11.5.0.me201310302042/tomcat/common/endorsed"
+JDK_HOME=/Applications/MyEclipse for Spring 2014/MyEclipse for Spring 2014.app/Contents/Profile/binary/com.sun.java.jdk7.macosx.x86_64_1.7.0.u45
+LIBRARY_PATH="/Applications/MyEclipse for Spring 2014/MyEclipse for Spring 2014.app/Contents/Profile/binary/com.sun.java.jdk7.macosx.x86_64_1.7.0.u45/bin\:/Applications/MyEclipse for Spring 2014/MyEclipse for Spring 2014.app/Contents/Profile/plugins/com.genuitec.eclipse.easie.tomcat7.myeclipse_11.5.0.me201310302042/tomcat/bin"
+eclipse.preferences.version=1
+migration.configHash=01b75a90239213714ea8f17852ecbcf8
+tomcat.configuration.version.current=7
