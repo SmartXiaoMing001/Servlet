@@ -13,3 +13,9 @@
 0:0:0:0:0:0:0:1 - - [04/Aug/2017:09:18:25 +0800] "GET /requestForward/ HTTP/1.1" 404 1024
 0:0:0:0:0:0:0:1 - - [04/Aug/2017:09:18:40 +0800] "GET /requestForward/LoginServlet HTTP/1.1" 200 242
 0:0:0:0:0:0:0:1 - - [04/Aug/2017:09:18:44 +0800] "POST /requestForward/Servlet1 HTTP/1.1" 200 31
+0:0:0:0:0:0:0:1 - - [04/Aug/2017:17:01:36 +0800] "GET /servletPro/ HTTP/1.1" 200 653
+0:0:0:0:0:0:0:1 - - [04/Aug/2017:17:01:44 +0800] "GET /servletPro/DownloadServlet HTTP/1.1" 200 46901
+0:0:0:0:0:0:0:1 - - [04/Aug/2017:17:02:18 +0800] "GET /servletPro/DownloadServlet HTTP/1.1" 200 46901
+127.0.0.1 - - [04/Aug/2017:17:03:17 +0800] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [04/Aug/2017:17:03:18 +0800] "GET /servletPro/DownloadServlet HTTP/1.1" 200 46901
+0:0:0:0:0:0:0:1 - - [04/Aug/2017:17:03:26 +0800] "GET /servletPro/DownloadServlet HTTP/1.1" 200 46901

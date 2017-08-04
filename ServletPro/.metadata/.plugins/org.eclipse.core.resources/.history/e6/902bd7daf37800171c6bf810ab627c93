@@ -24,14 +24,14 @@ public class DownloadServlet extends HttpServlet {
 		response.setContentType("text/html");
 		
 		//show file download(English && Chinese) 
-//		String filename = "cat1.jpg";
-//		response.setHeader("Content-Disposition", "attachment;filename="+filename);
-//		
-//		//open file，read the byte stream first，and then send file to brower
-//		String path = this.getServletContext().getRealPath("/images/"+filename);//全路径
-		String filename = java.net.URLEncoder.encode("猫咪.jpg","utf-8");// ;
+		String filename = "cat1.jpg";
 		response.setHeader("Content-Disposition", "attachment;filename="+filename);
-		String path = this.getServletContext().getRealPath("/images/猫咪.jpg");//全路径
+		
+		//open file，read the byte stream first，and then send file to brower
+		String path = this.getServletContext().getRealPath("/images/"+filename);//全路径
+//		String filename = java.net.URLEncoder.encode("猫咪.jpg","utf-8");// ;
+//		response.setHeader("Content-Disposition", "attachment;filename="+filename);
+//		String path = this.getServletContext().getRealPath("/images/猫咪.jpg");//全路径
 		FileInputStream fis = new FileInputStream(path);
 		
 		//buffer byte array
