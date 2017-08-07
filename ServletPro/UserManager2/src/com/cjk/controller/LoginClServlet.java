@@ -24,9 +24,9 @@ public class LoginClServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	static String sql = null;  
-    static DBHelper db1 = null;  
-    static ResultSet ret = null; 
+//	static String sql = null;  
+//    static DBHelper db1 = null;  
+//    static ResultSet ret = null; 
 	
 	private Connection ct = null;
 	private PreparedStatement ps = null;  
@@ -70,13 +70,33 @@ public class LoginClServlet extends HttpServlet {
 			if(rs.next()){
 				request.getRequestDispatcher("/MainFrame").forward(request, response);
 			} else{
+				request.setAttribute("err", "用户ID或者密码错误");
 				request.getRequestDispatcher("/LoginServlet").forward(request, response);
 			}
-			
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally{
-			
+			if(rs!=null){
+				try {
+					ps.close();
+				} catch (SQLException e){
+					e.printStackTrace();
+				}
+			}
+			if(ps!=null){
+				try{
+					ps.close();
+				} catch(SQLException e){
+					e.printStackTrace();
+				}
+			}
+			if(ct!=null){
+				try {
+					ct.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

@@ -21,10 +21,14 @@ public class MainFrame extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		
-		out.println("<h1>主界面</h1>"+id+"---"+password + "-->"); //h1是主标题
-		out.println("<a href='/UserManager/'>返回重新登录</a>"); //详单与pop
-		
+		System.out.println(id+"---"+password);
+		out.println("<h1>欢迎登陆</h1>"); //h1是主标题
+		out.println("<a href='/UserManager/LoginServlet'>返回重新登录</a>"); //详单与pop
+		out.println("<h3>请选您要进行的操作</h3>");
+		out.println("<a href='/UserManager/ManagerUsers'>管理用户</a>");
+		out.println("<a href=''>添加用户</a>");
+		out.println("<a href=''>查找用户</a>");
+		out.println("<a href=''>退出系统</a>");
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

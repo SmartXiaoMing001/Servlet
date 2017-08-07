@@ -1,0 +1,44 @@
+package com.cjk.view;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ManagerUsers extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doGet(req, resp);
+		System.out.println("~~~~~~~~~~~~~~~~~~");
+		resp.setContentType("text/html;charset=utf-8"); //没有会出来乱码
+		PrintWriter out = resp.getWriter();
+		out.println("<h1>管理用户</h1>");
+		
+		//从数据库中取出用户数据并显示
+		try{
+			
+		} catch (Exception e){
+			e.printStackTrace(); 
+		} finally {
+			
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doPost(req, resp);
+		doGet(req, resp);
+	}
+
+}

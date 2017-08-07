@@ -29,6 +29,10 @@ public class LoginServlet extends HttpServlet {
 		out.println("密     码：<input type='password' name='password'/><br/>");
 		out.println("<input type='submit' value='登录'/><br/>");
 		out.println("</form>");
+		String errorInfo = (String)request.getAttribute("err");
+		if(errorInfo != null){
+			out.println("<font color='red'>"+errorInfo+"</font>");//获得上个界面的数据
+		}
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
