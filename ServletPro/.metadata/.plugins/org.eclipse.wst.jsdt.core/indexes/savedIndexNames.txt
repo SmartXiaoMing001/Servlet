@@ -1,10 +1,4 @@
 INDEX VERSION 1.3+/Users/user/Desktop/JavaLearning/Servlet/ServletPro/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-4220636761.index
-1080276289.index
-2460997300.index
-3711439706.index
-2950626026.index
-1435720774.index
-1550936304.index
-3274576824.index
 1923418795.index
+1080276289.index
+4220636761.index
