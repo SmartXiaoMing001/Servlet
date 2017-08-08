@@ -1,0 +1,11 @@
+127.0.0.1 - - [08/Aug/2017:08:28:54 +0800] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [08/Aug/2017:08:28:56 +0800] "GET /UserManager/ HTTP/1.1" 200 945
+127.0.0.1 - - [08/Aug/2017:08:52:21 +0800] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [08/Aug/2017:08:52:21 +0800] "GET /UserManager/ HTTP/1.1" 200 945
+0:0:0:0:0:0:0:1 - - [08/Aug/2017:08:52:23 +0800] "GET /UserManager/LoginServlet?username=%E4%BD%A0%E5%A5%BD%E5%90%97 HTTP/1.1" 200 238
+0:0:0:0:0:0:0:1 - - [08/Aug/2017:08:52:28 +0800] "POST /UserManager/LoginClServlet HTTP/1.1" 200 255
+0:0:0:0:0:0:0:1 - - [08/Aug/2017:08:52:35 +0800] "GET /UserManager/LoginServlet HTTP/1.1" 200 238
+0:0:0:0:0:0:0:1 - - [08/Aug/2017:08:52:40 +0800] "POST /UserManager/LoginClServlet HTTP/1.1" 200 290
+0:0:0:0:0:0:0:1 - - [08/Aug/2017:08:52:49 +0800] "POST /UserManager/LoginClServlet HTTP/1.1" 200 290
+0:0:0:0:0:0:0:1 - - [08/Aug/2017:08:52:56 +0800] "POST /UserManager/LoginClServlet HTTP/1.1" 200 255
+0:0:0:0:0:0:0:1 - - [08/Aug/2017:08:52:57 +0800] "GET /UserManager/ManagerUsers HTTP/1.1" 200 661

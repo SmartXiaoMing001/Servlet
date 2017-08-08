@@ -29,12 +29,26 @@ public class ManagerUsers extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		out.println("<h1>管理用户</h1>");
 		
-		//从数据库中取出用户数据并显示
+		//分页！！！
+		int pageNow = 1;  
+		int pageSize = 3;  
+		int pageCount = 1; 
+		int rowCount = 1; //total record, from database
+		
+		pageCount = (rowCount - 1) / pageSize + 1;
+		
+		/*
+		 * (select *from (select t.*,rownum rn from " + "(select * from users order by id) t where rownum<="+pageSize*pageNow+") where rn>="+(pageSize*(pageNow-1)+1));
+		 * 
+		 * */
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			ct = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/root", "root", "123456");
+			
+			//查询多少条数据
 			ps = ct.prepareStatement("select * from users");
 			rs = ps.executeQuery();
+			
 			out.println("<table border=1 width =500px>");
 			out.println("<tr><th>id</th><th>用户名</th><th>email</th><th>级别</th></tr>");
 			while(rs.next()){
@@ -45,6 +59,7 @@ public class ManagerUsers extends HttpServlet {
 						"</td></tr>");
 			}
 			out.println("</table>");
+			
 		} catch (Exception e){
 			e.printStackTrace(); 
 		} finally {
