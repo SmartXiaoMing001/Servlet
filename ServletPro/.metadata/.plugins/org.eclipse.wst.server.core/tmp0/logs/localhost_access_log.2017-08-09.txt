@@ -181,3 +181,10 @@
 192.168.1.190 - - [09/Aug/2017:14:48:27 +0800] "GET /UserManager/UserCLServlet?type=update&id=10011 HTTP/1.1" 200 87
 192.168.1.190 - - [09/Aug/2017:14:48:41 +0800] "GET /UserManager/UserCLServlet?type=update&id=10011 HTTP/1.1" 200 87
 192.168.1.190 - - [09/Aug/2017:14:48:47 +0800] "GET /UserManager/LoginClServlet HTTP/1.1" 500 1532
+127.0.0.1 - - [09/Aug/2017:15:37:51 +0800] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:15:37:52 +0800] "GET /UserManager/ HTTP/1.1" 200 945
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:15:37:54 +0800] "GET /UserManager/LoginServlet?username=%E4%BD%A0%E5%A5%BD%E5%90%97 HTTP/1.1" 200 238
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:15:37:58 +0800] "POST /UserManager/LoginClServlet HTTP/1.1" 200 255
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:15:38:00 +0800] "GET /UserManager/ManagerUsers HTTP/1.1" 200 660
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:15:38:02 +0800] "GET /UserManager/UserCLServlet?type=update&id=10011 HTTP/1.1" 200 87
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:15:38:05 +0800] "GET /UserManager/UserCLServlet?type=update&id=10011 HTTP/1.1" 200 87

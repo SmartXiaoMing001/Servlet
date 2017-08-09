@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.cjk.domain.User;
-import com.cjk.util.SQLHelper;
 
 public class UserService {
 	
@@ -83,7 +82,27 @@ public class UserService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally{
-			SQLHelper.close(rs, ps, ct);
+			if(rs!=null){
+				try {
+					ps.close();
+				} catch (SQLException e){
+					e.printStackTrace();
+				}
+			}
+			if(ps!=null){
+				try{
+					ps.close();
+				} catch(SQLException e){
+					e.printStackTrace();
+				}
+			}
+			if(ct!=null){
+				try {
+					ct.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return result;
 	}
@@ -108,7 +127,27 @@ public class UserService {
 			result = false;
 			e.printStackTrace();
 		} finally{
-			SQLHelper.close(rs, ps, ct);
+			if(rs!=null){
+				try {
+					ps.close();
+				} catch (SQLException e){
+					e.printStackTrace();
+				}
+			}
+			if(ps!=null){
+				try{
+					ps.close();
+				} catch(SQLException e){
+					e.printStackTrace();
+				}
+			}
+			if(ct!=null){
+				try {
+					ct.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return result;
 	}

@@ -32,7 +32,7 @@ public class SQLHelper {
         try {  
             //从dbinfo.properties配置文件中读取配置信息,参照之前的项目
             pp = new Properties();  
-            fis = SQLHelper.class.getClassLoader().getResourceAsStream("/dbinfo.properties");  
+            fis = SQLHelper.class.getClassLoader().getResourceAsStream("com/tig/util/dbinfo.properties");  
               
             pp.load(fis);  
             url = pp.getProperty("url");  

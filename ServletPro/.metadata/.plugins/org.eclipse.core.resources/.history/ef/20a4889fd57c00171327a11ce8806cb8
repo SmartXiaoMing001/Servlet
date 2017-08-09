@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cjk.util.SQLHelper;
-
 public class ManagerUsers extends HttpServlet {
 
 	/**
@@ -68,7 +66,27 @@ public class ManagerUsers extends HttpServlet {
 		} catch (Exception e){
 			e.printStackTrace(); 
 		} finally {
-			SQLHelper.close(rs, ps, ct);
+			if(rs!=null){
+				try {
+					ps.close();
+				} catch (SQLException e){
+					e.printStackTrace();
+				}
+			}
+			if(ps!=null){
+				try{
+					ps.close();
+				} catch(SQLException e){
+					e.printStackTrace();
+				}
+			}
+			if(ct!=null){
+				try {
+					ct.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
