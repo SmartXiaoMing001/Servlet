@@ -32,14 +32,13 @@ public class LoginClServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		String id = MyTools.getNewString(request.getParameter("id")); //确保正确
 		String password = request.getParameter("password");
-		System.out.println("LoginCLServlet:id:"+id+" password:"+password);
-		
+	
 		UserService userService = new UserService();
 		User user = new User();
 		user.setId(Integer.parseInt(id));
 		user.setPassword(password);
 		if(userService.checkUser(user)){
-			request.getRequestDispatcher("/MainFrame").forward(request, response);
+			request.getRequestDispatcher("/MainFrame").forward(request, response); //MainFrame的数据移动到当前Servlet中
 		} else {
 			request.setAttribute("err", "用户id或者密码有误");
 			request.getRequestDispatcher("/LoginServlet").forward(request, response);

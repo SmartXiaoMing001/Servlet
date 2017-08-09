@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0"
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -27,9 +24,19 @@
     <servlet-name>ManagerUsers</servlet-name>
     <servlet-class>com.cjk.view.ManagerUsers</servlet-class>
   </servlet>
-
-
-
+  <servlet>
+    <servlet-name>Ok</servlet-name>
+    <servlet-class>com.cjk.view.Ok</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Err</servlet-name>
+    <servlet-class>com.cjk.view.Err</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserCLServlet</servlet-name>
+    <servlet-class>com.cjk.controller.UserCLServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
@@ -46,5 +53,17 @@
     <servlet-name>ManagerUsers</servlet-name>
     <url-pattern>/ManagerUsers</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>Ok</servlet-name>
+    <url-pattern>/Ok</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Err</servlet-name>
+    <url-pattern>/Err</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserCLServlet</servlet-name>
+    <url-pattern>/UserCLServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

@@ -27,6 +27,7 @@ public class ManagerUsers extends HttpServlet {
 	
 		resp.setContentType("text/html;charset=utf-8"); //没有会出来乱码
 		PrintWriter out = resp.getWriter();
+//		out.println("function confirmOperation(){return window.confirm('真的要删除该用户吗?');}");
 		out.println("<h1>管理用户</h1>");
 		
 		//分页！！！
@@ -50,13 +51,15 @@ public class ManagerUsers extends HttpServlet {
 			rs = ps.executeQuery();
 			
 			out.println("<table border=1 width =500px>");
-			out.println("<tr><th>id</th><th>用户名</th><th>email</th><th>级别</th></tr>");
+			out.println("<tr><th>id</th><th>用户名</th><th>email</th><th>级别</th><th>删除用户</th><th>修改用户</th></tr>");
 			while(rs.next()){
-				out.println("<tr><td>"+rs.getInt(1)+
+				out.println("<tr><td>"+rs.getInt(1)+ //u.getId();
 						"</td><td>"+rs.getString(2)+
 						"</td><td>"+rs.getString(3)+
-						"</td><td>"+rs.getInt(4)+
-						"</td></tr>");
+						"</td><td>"+rs.getInt(4)+  //onClick='return confirmOperation()'
+						"</td><td><a href='/UserManager/UserCLServlet?type=delete&id="+rs.getInt(1)+"'>删除用户</a></td><td>"+ 
+						"<a href='/UserManager/UserCLServlet?type=update&id="+rs.getInt(1)+"'>修改用户</a></td>"+
+						"</td></tr>"); 
 			}
 			out.println("</table>");
 			
