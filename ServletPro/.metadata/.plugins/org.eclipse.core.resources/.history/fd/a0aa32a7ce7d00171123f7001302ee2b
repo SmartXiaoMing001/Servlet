@@ -1,0 +1,78 @@
+package com.cjk.domin;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.cjk.domain.User;
+import com.cjk.util.SQLHelper;
+
+public class UserService {
+	
+	private Connection ct = null;
+	private  PreparedStatement ps = null;
+	private ResultSet rs = null;
+	
+	
+	/**
+	 * 通过ID找到用户
+	 * 
+	 * */
+	public User getUSerById(String id){
+		User user = new User();
+		String sql = "select * from users where id=?";
+		String parameters[] = {id};
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			ct = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/root", "root", "123456");
+			ps = ct.prepareStatement(sql);
+			for (int i=0;i<parameters.length;i++){
+				ps.setObject(++i, parameters[--i]);
+			}
+			rs = ps.executeQuery();
+			if(rs.next()){
+				user.setId(rs.getInt(1));
+				user.setName(rs.getString(2));
+				user.setEmail(rs.getString(3));
+				user.setGrade(rs.getInt(4));
+				user.setPassword(rs.getString(5));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			SQLHelper.close(rs, ps, ct);
+		}
+		return user;
+	}
+	
+	/**
+	 * @param user
+	 * @return
+	 * 
+	 * Pending User is Correct!
+	 * 
+	 * String sql = "select * from users where id=? and password=?";
+		String parameters[] = {user.getId()+"",user.getPassword()};
+		result = SQLHelper.executeCode(sql, parameters);
+	 */
+	public boolean checkUser(User user){
+		String sql = "select * from users where id=? and password=?";
+		String parameters[] = {user.getId()+"",user.getPassword()};
+		return SQLHelper.executeQuery(sql, parameters);
+	}
+	
+	public boolean delUser(String id){
+		String sql = "delete from users where id=?";
+		String parameters[] = {id};
+		return SQLHelper.executeUpdate(sql, parameters);
+	}
+	
+	public boolean updateUser(User user){
+		String sql = "update users set userName=?,email=?,grade=?,password=? where id=?";
+		String parameters[]={user.getName(),user.getEmail(),user.getGrade()+"",user.getPassword(),user.getId()+""};
+		return SQLHelper.executeUpdate(sql, parameters);
+	}
+}

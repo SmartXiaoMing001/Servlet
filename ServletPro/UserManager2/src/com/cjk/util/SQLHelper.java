@@ -8,10 +8,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
 
+import com.cjk.domain.User;
+
 public class SQLHelper {
 	
 	//定义链接所需要的变量  
-    private static Connection con = null;  
+    private static Connection ct = null;  
     private static PreparedStatement ps = null;  
     private static ResultSet rs = null;  
       
@@ -24,37 +26,38 @@ public class SQLHelper {
     //定义读取配置文件所需要的变量  
     private static Properties pp = null;  
     private static InputStream fis = null;  
+    
       
     /** 
      * 加载驱动 
      */  
-    static {  
-        try {  
-            //从dbinfo.properties配置文件中读取配置信息,参照之前的项目
-            pp = new Properties();  
-            fis = SQLHelper.class.getClassLoader().getResourceAsStream("/dbinfo.properties");  
-              
-            pp.load(fis);  
-            url = pp.getProperty("url");  
-            username = pp.getProperty("username");  
-            driver=pp.getProperty("driver");  
-            password=pp.getProperty("password");  
-              
-            //加载驱动  
-            Class.forName(driver);  
-              
-        } catch (Exception e) {  
-            System.out.println("驱动加载失败！");  
-            e.printStackTrace();  
-        } finally {  
-            try {  
-                fis.close();  
-            } catch (Exception e) {  
-                e.printStackTrace();  
-            }  
-            fis = null; //垃圾回收自动处理  
-        } 
-    }
+//    static {  
+//        try {  
+//            //从dbinfo.properties配置文件中读取配置信息,参照之前的项目
+//            pp = new Properties();  
+//            fis = SQLHelper.class.getClassLoader().getResourceAsStream("/dbinfo.properties");  
+//              
+//            pp.load(fis);  
+//            url = pp.getProperty("url");  
+//            username = pp.getProperty("username");  
+//            driver=pp.getProperty("driver");  
+//            password=pp.getProperty("password");  
+//              
+//            //加载驱动  
+//            Class.forName(driver);  
+//              
+//        } catch (Exception e) {  
+//            System.out.println("驱动加载失败！");  
+//            e.printStackTrace();  
+//        } finally {  
+//            try {  
+//                fis.close();  
+//            } catch (Exception e) {  
+//                e.printStackTrace();  
+//            }  
+//            fis = null; //垃圾回收自动处理  
+//        } 
+//    }
     
     /** 
      * 得到Connection链接 
@@ -64,14 +67,14 @@ public class SQLHelper {
           
         try {  
             //建立连接  
-            con = DriverManager.getConnection(url, username, password);  
+            ct = DriverManager.getConnection(url, username, password);  
               
         } catch (Exception e) {  
             System.out.println("数据库链接失败！");  
             e.printStackTrace();  
         }  
           
-        return con;  
+        return ct;  
     }  
       
     /** 
@@ -104,4 +107,50 @@ public class SQLHelper {
             }  
         }  
     } 
+    
+    //查找
+    public static boolean executeQuery(String sql,String parameters[]){
+    	boolean result = false;
+    	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			ct = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/root?characterEncoding=utf-8", "root", "123456");
+			ps = ct.prepareStatement(sql);
+			for (int i=0;i<parameters.length;i++){
+				ps.setObject(++i, parameters[--i]);
+			}
+			rs =ps.executeQuery();
+			if(rs.next()){ //这里是update
+				result = true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, ps, ct);
+		}
+    	return result;
+    }
+    
+    //删除和修改
+    public static boolean executeUpdate(String sql,String parameters[]){
+    	boolean result = false;
+    	System.out.println("executeUpdate");
+    	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			ct = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/root?characterEncoding=utf-8", "root", "123456");
+			ps = ct.prepareStatement(sql);
+			for (int i=0;i<parameters.length;i++){
+				ps.setObject(++i, parameters[--i]);
+			}
+			if(ps.executeUpdate() > 0){ //这里是update
+				result = true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, ps, ct);
+		}
+    	return result;
+    }
 }

@@ -1,0 +1,98 @@
+package com.cjk.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.cjk.domain.User;
+import com.cjk.domin.UserService;
+
+public class UserCLServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/hetml;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		//receiveID
+		String id = request.getParameter("id");
+		String type = request.getParameter("type");
+		UserService userService = new UserService();
+		
+		if(type.equals("delete")){
+			if(userService.delUser(id)){
+				request.setAttribute("info", "删除成功");
+				request.getRequestDispatcher("/Ok").forward(request, response);
+			} else{
+				request.setAttribute("info", "删除失败");
+				request.getRequestDispatcher("/Err").forward(request, response);
+			}
+		}
+		if(type.equals("UpdateUserView")){
+			User user = userService.getUSerById(id);
+			request.setAttribute("userInfo", user);
+			request.getRequestDispatcher("/UpdateUserView").forward(request, response);
+		}
+		if(type.equals("update")){
+			
+			User user = getUser(request);
+			if(userService.updateUser(user)){
+				request.setAttribute("info", "修改成功");
+				request.getRequestDispatcher("/Ok").forward(request, response);
+			} else {
+				request.setAttribute("info", "修改失败");
+				request.getRequestDispatcher("/Err").forward(request, response);
+			}	
+		}
+		
+		if(type.equals("gotoAddUser")){
+			request.getRequestDispatcher("/AddUserView").forward(request, response);
+		}
+		if(type.equals("add")){
+			System.out.println("----------");
+			User user = getUser(request);
+			if(userService.addUser(user)){
+				request.setAttribute("info", "添加成功");
+				request.getRequestDispatcher("/Ok").forward(request, response);
+			} else {
+				request.setAttribute("info", "添加失败");
+				request.getRequestDispatcher("/Err").forward(request, response);
+			}	
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		this.doGet(request, response);
+	}
+	
+	public User getUser(HttpServletRequest request){
+		//
+		String id = request.getParameter("id");
+		String userName = request.getParameter("userName");
+		String email = request.getParameter("email");
+		String grade = request.getParameter("grade");
+		String password = request.getParameter("password");
+		
+		//
+		User user = new User();
+		user.setId(Integer.parseInt(id));
+		user.setName(userName);
+		user.setEmail(email);
+		user.setGrade(Integer.parseInt(grade));
+		user.setPassword(password);
+		return user;
+	}
+}

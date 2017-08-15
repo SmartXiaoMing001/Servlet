@@ -15,101 +15,70 @@ public class UserService {
 	private  PreparedStatement ps = null;
 	private ResultSet rs = null;
 	
+	
+	/**
+	 * 通过ID找到用户
+	 * 
+	 * */
+	public User getUSerById(String id){
+		User user = new User();
+		String sql = "select * from users where id=?";
+		String parameters[] = {id};
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			ct = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/root", "root", "123456");
+			ps = ct.prepareStatement(sql);
+			for (int i=0;i<parameters.length;i++){
+				ps.setObject(++i, parameters[--i]);
+			}
+			rs = ps.executeQuery();
+			if(rs.next()){
+				user.setId(rs.getInt(1));
+				user.setName(rs.getString(2));
+				user.setEmail(rs.getString(3));
+				user.setGrade(rs.getInt(4));
+				user.setPassword(rs.getString(5));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			SQLHelper.close(rs, ps, ct);
+		}
+		return user;
+	}
+	
 	/**
 	 * @param user
 	 * @return
 	 * 
 	 * Pending User is Correct!
+	 * 
+	 * String sql = "select * from users where id=? and password=?";
+		String parameters[] = {user.getId()+"",user.getPassword()};
+		result = SQLHelper.executeCode(sql, parameters);
 	 */
 	public boolean checkUser(User user){
-		
-		boolean result = false;
-		
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			ct = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/root", "root", "123456");
-			ps = ct.prepareStatement("select * from users where id=? and password=?");
-			ps.setObject(1, user.getId());
-			ps.setObject(2, user.getPassword());
-			rs = ps.executeQuery();
-			if(rs.next()){
-				result = true;
-			}
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally{
-			if(rs!=null){
-				try {
-					ps.close();
-				} catch (SQLException e){
-					e.printStackTrace();
-				}
-			}
-			if(ps!=null){
-				try{
-					ps.close();
-				} catch(SQLException e){
-					e.printStackTrace();
-				}
-			}
-			if(ct!=null){
-				try {
-					ct.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return result;
+		String sql = "select * from users where id=? and password=?";
+		String parameters[] = {user.getId()+"",user.getPassword()};
+		return SQLHelper.executeQuery(sql, parameters);
 	}
 	
 	public boolean delUser(String id){
-		
-		boolean result = false;
-		
 		String sql = "delete from users where id=?";
 		String parameters[] = {id};
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			ct = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/root", "root", "123456");
-			ps = ct.prepareStatement(sql);
-			for (int i=0;i<parameters.length;i++){
-				ps.setObject(++i, parameters[--i]);
-			}
-			if(ps.executeUpdate() > 0){
-				result = true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			SQLHelper.close(rs, ps, ct);
-		}
-		return result;
+		return SQLHelper.executeUpdate(sql, parameters);
 	}
 	
-	public boolean updateId(String id) {
-		boolean result = false;
-		String userName = "大鹏";
-		String email = "cjk123@163.com";
-		String parameters[] = {userName,email,id};
-	    String sql = "update users set userName=?,email=? where id=?";
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			ct = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/root?characterEncoding=utf-8", "root", "123456");
-			ps = ct.prepareStatement(sql);
-			for (int i=0;i<parameters.length;i++){
-				ps.setObject(++i, parameters[--i]);
-			}
-			if(ps.executeUpdate() > 0){
-				result = true;
-			}
-		} catch (Exception e) {
-			result = false;
-			e.printStackTrace();
-		} finally{
-			SQLHelper.close(rs, ps, ct);
-		}
-		return result;
+	public boolean updateUser(User user){
+		String sql = "update users set username=?,email=?,grade=?,password=? where id=?";
+		String parameters[]={user.getName(),user.getEmail(),user.getGrade()+"",user.getPassword(),user.getId()+""};
+		return SQLHelper.executeUpdate(sql, parameters);
+	}
+	
+	public boolean addUser(User user){
+		String sql = "insert into users(username,email,grade,password) values(?,?,?,?)";
+		String parameters[] = {user.getName(),user.getEmail(),user.getGrade()+"",user.getPassword()};
+		return SQLHelper.executeUpdate(sql, parameters);
 	}
 }

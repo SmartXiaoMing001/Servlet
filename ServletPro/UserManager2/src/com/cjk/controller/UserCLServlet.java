@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cjk.domain.User;
 import com.cjk.domin.UserService;
 
 public class UserCLServlet extends HttpServlet {
@@ -19,24 +20,50 @@ public class UserCLServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/hetml;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		//receiveID
 		String id = request.getParameter("id");
 		String type = request.getParameter("type");
+		UserService userService = new UserService();
+		
 		if(type.equals("delete")){
-			if(new UserService().delUser(id)){
+			if(userService.delUser(id)){
+				request.setAttribute("info", "删除成功");
 				request.getRequestDispatcher("/Ok").forward(request, response);
 			} else{
+				request.setAttribute("info", "删除失败");
 				request.getRequestDispatcher("/Err").forward(request, response);
 			}
 		}
+		if(type.equals("UpdateUserView")){
+			User user = userService.getUSerById(id);
+			request.setAttribute("userInfo", user);
+			request.getRequestDispatcher("/UpdateUserView").forward(request, response);
+		}
 		if(type.equals("update")){
-			if(new UserService().updateId(id)){
+			User user = aboutUser(request, true);
+			if(userService.updateUser(user)){
+				request.setAttribute("info", "修改成功");
 				request.getRequestDispatcher("/Ok").forward(request, response);
-			} else{
+			} else {
+				request.setAttribute("info", "修改失败");
 				request.getRequestDispatcher("/Err").forward(request, response);
-			}
+			}	
+		}
+		if(type.equals("gotoAddUser")){
+			request.getRequestDispatcher("/AddUserView").forward(request, response);
+		}
+		if(type.equals("add")){
+			User user = aboutUser(request, false);
+			if(userService.addUser(user)){
+				request.setAttribute("info", "添加成功");
+				request.getRequestDispatcher("/Ok").forward(request, response);
+			} else {
+				request.setAttribute("info", "添加失败");
+				request.getRequestDispatcher("/Err").forward(request, response);
+			}	
 		}
 	}
 
@@ -46,5 +73,28 @@ public class UserCLServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		this.doGet(request, response);
+	}
+	
+	private User aboutUser(HttpServletRequest request,boolean isUpdate){
+		
+		//
+		String userName = request.getParameter("userName");
+		String email = request.getParameter("email");
+		String grade = request.getParameter("grade");
+		String password = request.getParameter("password");
+		
+		//
+		User user = new User();
+		user.setName(userName);
+		user.setEmail(email);
+		user.setGrade(Integer.parseInt(grade));
+		user.setPassword(password);
+		
+		//
+		if(isUpdate){
+			String id = request.getParameter("id");
+			user.setId(Integer.parseInt(id));
+		}
+		return user;
 	}
 }
