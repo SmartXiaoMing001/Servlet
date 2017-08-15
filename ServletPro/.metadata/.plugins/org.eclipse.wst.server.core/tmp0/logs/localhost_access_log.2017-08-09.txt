@@ -188,3 +188,9 @@
 0:0:0:0:0:0:0:1 - - [09/Aug/2017:15:38:00 +0800] "GET /UserManager/ManagerUsers HTTP/1.1" 200 660
 0:0:0:0:0:0:0:1 - - [09/Aug/2017:15:38:02 +0800] "GET /UserManager/UserCLServlet?type=update&id=10011 HTTP/1.1" 200 87
 0:0:0:0:0:0:0:1 - - [09/Aug/2017:15:38:05 +0800] "GET /UserManager/UserCLServlet?type=update&id=10011 HTTP/1.1" 200 87
+127.0.0.1 - - [09/Aug/2017:18:56:38 +0800] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:18:56:39 +0800] "GET /UserManager/ HTTP/1.1" 200 945
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:18:56:41 +0800] "GET /UserManager/LoginServlet?username=%E4%BD%A0%E5%A5%BD%E5%90%97 HTTP/1.1" 200 238
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:18:56:46 +0800] "POST /UserManager/LoginClServlet HTTP/1.1" 200 290
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:18:56:52 +0800] "POST /UserManager/LoginClServlet HTTP/1.1" 200 255
+0:0:0:0:0:0:0:1 - - [09/Aug/2017:19:01:21 +0800] "GET /UserManager/ HTTP/1.1" 200 945
